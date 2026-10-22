@@ -2,15 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Genre;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class GenreSeeder extends Seeder
 {
     public function run(): void
     {
-        $now = now();
-
         $genres = [
             ['name' => 'Fantasy',         'description' => 'Magic, mythical creatures and epic quests.'],
             ['name' => 'Science Fiction', 'description' => 'Futuristic technology, space travel and speculative worlds.'],
@@ -19,10 +17,7 @@ class GenreSeeder extends Seeder
         ];
 
         foreach ($genres as $genre) {
-            DB::table('genres')->insert($genre + [
-                'created_at' => $now,
-                'updated_at' => $now,
-            ]);
+            Genre::create($genre);
         }
     }
 }
